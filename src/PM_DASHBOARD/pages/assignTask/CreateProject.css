@@ -1,0 +1,11 @@
+.AddEmpDetails{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#addEmp :hover{
+    color: rgb(38, 209, 38);
+}
+.Emp_details_show li{
+    list-style: none;
+}
