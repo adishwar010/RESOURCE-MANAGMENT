@@ -19,11 +19,28 @@ const ActiveEmployee = () => {
     return (
         <div className="activeEmpData">
             <div className="tableDisplay">
+            <div className="table_main" id="t01">
+                <table>
+                    <tr>
+                    <th>EMP ID</th>
+                    <th>EMP NAME</th>
+                    <th>PROJECT NAME</th>
+                    <th>PROJECT MANAGER</th>
+                    </tr>
+                    
+                    {activeEmp.map((val)=>(
+                        <tr>
+                        <td>{val.empid}</td>
+                        <td>{val.empname}</td>
+                        <td>{val.projectname}</td>
+                        <td>{val.manager}</td>
+                    </tr>
+                    ))}
+                    
+        
+                </table>
+        </div>
             
-            {Tabledata.map(({ empid ,empname ,projectname ,manager})=>{
-               return( <Table title1="EMP ID" title2="EMP NAME" title3="PROJECT" title4="MANAGER" empid={empid} empname={empname} projectname={projectname} manager={manager}  />
-            );
-            })}
             </div>
             
         </div>

@@ -32,10 +32,10 @@ const Sidebar = () => {
               <Assignment />
               <div className="itemTitle"><NavLink  className="itemTitle"  to = '/admin/totalproject'>TOTAL PROJECTS</NavLink></div>
             </li>
-            <li className="sidebarListItem ">
+            {/* <li className="sidebarListItem ">
               <Group />
               <div className="itemTitle">TOTAL EMPLOYEES</div>
-            </li>
+            </li> */}
             <li className="sidebarListItem ">
               <Assignment />
               <div className="itemTitle"><NavLink  className="itemTitle"  to = '/admin/activeproject'>ACTIVE PROJECTS</NavLink></div>
