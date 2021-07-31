@@ -19,11 +19,25 @@ const Onbench = () => {
     return (
         <div className="onBenchEmpData">
             <div className="tableDisplay">
-            
-            {Tabledata.map(({ empid ,empname ,manager})=>{
-               return( <Table title1="EMP ID" title2="EMP NAME" title3="MANAGER" empid={empid} empname={empname}  manager={manager}  />
-            );
-            })}
+            <div className="table_main" id="t01">
+                <table>
+                    <tr>
+                    <th>EMP ID</th>
+                    <th>EMP NAME</th>
+                    <th>PROJECT MANAGER</th>
+                    </tr>
+                    
+                    {onBench.map((val)=>(
+                        <tr>
+                        <td>{val.empid}</td>
+                        <td>{val.empname}</td>
+                        <td>{val.manager}</td>
+                    </tr>
+                    ))}
+                    
+        
+                </table>
+        </div>
             </div>
             
         </div>

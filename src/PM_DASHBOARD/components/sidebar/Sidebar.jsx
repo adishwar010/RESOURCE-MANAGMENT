@@ -30,25 +30,18 @@ const Sidebar = () => {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">QUICK MENU</h3>
           <ul className="sidebarList">
+            
             <li className="sidebarListItem ">
               <Group />
-              <div className="itemTitle">TOTAL EMPLOYEES</div>
-            </li>
-            {/* <li className="sidebarListItem">
-              <Assignment />
-              <div className="itemTitle">TOTAL PROJECTS</div>
-            </li> */}
-            <li className="sidebarListItem ">
-              <Group />
-              <div className="itemTitle">ACTIVE EMPLOYEES</div>
+              <div className="itemTitle"><NavLink  className="itemTitle"  to = '/pm/activeemp'>ACTIVE EMPLOYEES</NavLink></div>
             </li>
             <li className="sidebarListItem ">
               <Assignment />
-              <div className="itemTitle">ACTIVE PROJECTS</div>
+              <div className="itemTitle" ><NavLink  className="itemTitle"  to = '/pm/activeproject'>ACTIVE PROJECTS</NavLink></div>
             </li>
             <li className="sidebarListItem ">
               <Group />
-              <div className="itemTitle">ON-BENCH EMPLOYEES</div>
+              <div className="itemTitle"><NavLink  className="itemTitle"  to = '/pm/onbenchemp'>ON-BENCH EMPLOYEES</NavLink></div>
             </li>
           </ul>
         </div>

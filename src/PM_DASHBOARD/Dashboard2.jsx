@@ -7,6 +7,9 @@ import  AssignTask from './pages/assignTask/AssignTask';
 import Invoice from './pages/Invoice/Invoice';
 import { BrowserRouter as Router , Switch , Route } from "react-router-dom";
 import Bill from './pages/Invoice/bill';
+import ActiveEmployee from './LandingPages/ActiveEmployee/ActiveEmp';
+import Onbench from './LandingPages/ONBENCH/Onbench';
+import Activeproject from './LandingPages/ActiveProjects/Activeproject';
 
 
 const Dashboard2 = () => {
@@ -30,6 +33,16 @@ const Dashboard2 = () => {
                <Route exact path ='/pm/bill'>
                     <Bill />
                </Route>
+               <Route exact path ='/pm/activeemp'>
+                    <ActiveEmployee />
+               </Route>
+               <Route exact path ='/pm/onbenchemp'>
+                    <Onbench />
+               </Route>
+               <Route exact path ='/pm/activeproject'>
+                    <Activeproject />
+               </Route>
+               
            
            </Switch>
            </div>

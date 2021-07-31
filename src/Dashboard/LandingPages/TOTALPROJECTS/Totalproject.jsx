@@ -19,8 +19,33 @@ const Totalproject = () => {
     return (
         <div className="totalproject">
             <div className="tableDisplay">
+            <div className="table_main" id="t01">
+      <table>
+        <tr>
+          <th>PROJECT NAME</th>
+          <th>PROJECT DESCRIPTION</th>
+          <th>CLIENT</th>
+          <th>DURATION</th>
+          <th>EMPLOYEES ASSIGNED</th>
+          <th>MANAGER</th>
+        </tr>
+        
+        {totalProject.map((val)=>(
+            <tr>
+            <td>{val.projName}</td>
+            <td>{val.projDesc}</td>
+            <td>{val.client}</td>
+            <td>{val.duration}</td>
+            <td>{val.empAssigned.map((val)=>(val + "," ))}</td>
+            <td>{val.projManager}</td>
+          </tr>
+        ))}
+        
+        
+      </table>
+    </div>
             
-            {Tabledata.map(({ projName ,projDesc , client,duration,empAssigned ,projManager})=>{
+            {/* {Tabledata.map(({ projName ,projDesc , client,duration,empAssigned ,projManager})=>{
                return( <TotalprojectTable 
                 title1="PROJECT NAME" 
                 title2="DESC" 
@@ -36,7 +61,7 @@ const Totalproject = () => {
                 empAssigned={empAssigned}
                 projManager={projManager}  />
             );
-            })}
+            })} */}
             </div>
             
         </div>
