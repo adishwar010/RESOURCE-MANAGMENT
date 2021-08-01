@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import InputLabel from "@material-ui/core/InputLabel";
 import Input from "@material-ui/core/Input";
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
@@ -7,17 +7,39 @@ import "./CreateProject.css";
 import axios from 'axios';
 
 const credentials = {
-  pmName:'',
   task_ass: "",
   client_name: "",
+  projDescription : "",
+  duration : "",
+  contactPerson:"",
+  telephone : "",
+  clientAddress : "",
 };
 const AssignTask = () => {
   const [details, setdetails] = useState(credentials);
+  const [projName, setProjName] = useState();
   const [start_date, setStart_date] = useState();
+  const [end_date, setend_date] = useState();
   const [empData, setempData] = useState([]);
   const [empName, setempName] = useState("");
   const [EmpAddedList, setEmpAddedList] = useState([]);
   let newData;
+  
+  
+  useEffect (() =>{
+    const mailId = localStorage.getItem("username");
+    async function projectManagerName(){
+    
+      const res = await axios.get(`http://localhost:4000/hrms/projManagerName?username=${mailId}`) 
+     
+        //  console.log(res.data.projectManagerList[0].empName);
+     
+         setProjName(res.data.projectManagerList[0].empName);
+        
+    }
+    projectManagerName();
+  },[])
+
 
   const handleInput = (event) => {
     let { name, value } = event.target;
@@ -52,20 +74,32 @@ console.log(name_array);
   const submitFunction = (event) => {
     event.preventDefault();
     newData = {
-      pmName : details.pmName,
+      pmName : projName,
        name: name_array,
       task: details.task_ass,
+      projDescription : details.projDescription,
       client: details.client_name,
-      date: start_date,
+      startDate: start_date,
+      endDate : end_date,
+      duration : details.duration,
+      contactPerson : details.contactPerson,
+      telephone : details.telephone,
+      clientAddress : details.clientAddress,
     };
     setempData([...empData, newData]);
 
     const projectData = {
-      projManager: details.pmName,
+      projManager: projName,
       empAssigned: name_array,
       projName: details.task_ass,
+      projDescription : details.projDescription,
       client: details.client_name,
       startDate: start_date,
+      endDate : end_date,
+      duration : details.duration,
+      contactPerson : details.contactPerson,
+      telephone : details.telephone,
+      clientAddress : details.clientAddress,
     }
       async function addProject(){
         const res = await axios.post("http://localhost:4000/hrms/addproject",projectData); 
@@ -80,20 +114,21 @@ console.log(name_array);
   return (
     <>
       <div className="addUser">
-        <div className="main_con">
-          <div className="form_card">
+        <div className="main_con" id="main_con">
+          <div className="form_card" id="form_card">
             <br />
             <h1>CREATE PROJECT</h1>
             <hr />
             <br />
             <form action="" onSubmit={submitFunction}>
-            <InputLabel htmlFor="pmName">ENTER YOUR NAME</InputLabel>
+            <InputLabel htmlFor="pmName">PROJECT MANAGER NAME</InputLabel>
                 <Input
                   type="text"
                   name="pmName"
                   id="pmName"
-                  value={details.pmName}
+                  value={projName}
                   onChange={handleInput}
+                  fullWidth ={true}
                 />
                 <br/>
                 <br />
@@ -105,8 +140,20 @@ console.log(name_array);
                   id="task_ass"
                   value={details.task_ass}
                   onChange={handleInput}
+                  fullWidth ={true}
                 />
               </div>
+              <br />
+              <InputLabel htmlFor="projDescription">PROJECT DESCRIPTION </InputLabel>
+              <Input
+                type="text"
+                name="projDescription"
+                id="projDescription"
+                value={details.projDescription}
+                onChange={handleInput}
+                fullWidth ={true}
+              />
+              <br />
               <br />
               <InputLabel htmlFor="client_name">ENTER CLIENT NAME</InputLabel>
               <Input
@@ -115,6 +162,7 @@ console.log(name_array);
                 id="client_name"
                 value={details.client_name}
                 onChange={handleInput}
+                fullWidth ={true}
               />
               <br />
               <br />
@@ -127,8 +175,69 @@ console.log(name_array);
                 onChange={(event) => {
                   setStart_date(event.target.value);
                 }}
+                fullWidth ={true}
               />
               <br /> 
+              <br />
+              <InputLabel htmlFor="end_date">ENTER END DATE</InputLabel>
+              <Input
+                type="date"
+                name="end_date"
+                id="end_date"
+                value={end_date}
+                onChange={(event) => {
+                  setend_date(event.target.value);
+                }}
+                fullWidth ={true}
+              />
+              <br /> 
+              <br />
+              <InputLabel htmlFor="duration">ENTER DURATION</InputLabel>
+              <Input
+                type="text"
+                name="duration"
+                id="duration"
+                value={details.duration}
+                onChange={handleInput}
+                fullWidth ={true}
+              />
+              <br />
+              <br />
+              <div className="task_assigned">
+                <InputLabel htmlFor="contactPerson">ENTER CONTACT PERSON</InputLabel>
+                <Input
+                  type="text"
+                  name="contactPerson"
+                  id="contactPerson"
+                  value={details.contactPerson}
+                  onChange={handleInput}
+                  fullWidth ={true}
+                />
+              </div>
+              <br />
+              <div className="task_assigned">
+                <InputLabel htmlFor="telephone">ENTER CONTACT PERSON'S PHONE </InputLabel>
+                <Input
+                  type="tel"
+                  name="telephone"
+                  id="telephone"
+                  value={details.telephone}
+                  onChange={handleInput}
+                  fullWidth ={true}
+                />
+              </div>
+              <br />
+              <div className="task_assigned">
+                <InputLabel htmlFor="clientAddress">ENTER CLIENT ADDRESS</InputLabel>
+                <Input
+                  type="text"
+                  name="clientAddress"
+                  id="clientAddress"
+                  value={details.clientAddress}
+                  onChange={handleInput}
+                  fullWidth ={true}
+                />
+              </div>
               <br />
               <div className="addEmployee">
                 <InputLabel htmlFor="emp_name">ENTER EMPLOYEE's</InputLabel>
@@ -140,6 +249,7 @@ console.log(name_array);
                     autoComplete="off"
                     value={empName}
                     onChange={handleEmpName}
+                    fullWidth ={true}
                   />
                   <button id="addEmp" onClick={AddEmployee}><PersonAddIcon style={{ fontSize: 35 }}/></button>
                 </div>

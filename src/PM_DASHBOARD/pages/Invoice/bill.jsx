@@ -37,6 +37,7 @@ const Bill = () => {
             </span>
             
             <span className="gstNumber">GST : ABCDEFGH</span>
+          
           </div>
 
           
